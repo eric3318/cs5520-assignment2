@@ -11,6 +11,9 @@ import NewActivity from './screens/NewActivity';
 import Diet from './screens/Diet';
 import NewDiet from './screens/NewDiet';
 import Settings from './screens/Settings';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import Feather from '@expo/vector-icons/Feather';
 
 const defaultScreenOptions = {
   headerStyle: { backgroundColor: 'purple' },
@@ -25,6 +28,9 @@ function Tabs() {
         component={Activities}
         options={{
           title: 'Activities',
+          tabBarIcon: () => (
+            <FontAwesome5 name="running" size={24} color="black" />
+          ),
         }}
       />
       <Tab.Screen
@@ -32,6 +38,13 @@ function Tabs() {
         component={Diet}
         options={{
           title: 'Diet',
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name="food-drumstick"
+              size={24}
+              color="black"
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -39,6 +52,7 @@ function Tabs() {
         component={Settings}
         options={{
           title: 'Settings',
+          tabBarIcon: () => <Feather name="settings" size={24} color="black" />,
         }}
       />
     </Tab.Navigator>
