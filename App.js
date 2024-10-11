@@ -1,17 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 import Activities from './screens/Activities';
 import { DataProvider } from './context/dataContext';
 import NewActivity from './screens/NewActivity';
 import Diet from './screens/Diet';
+import NewDiet from './screens/NewDiet';
+import Settings from './screens/Settings';
 
 const defaultScreenOptions = {
   headerStyle: { backgroundColor: 'purple' },
   headerTintColor: 'white',
 };
+
+function Tabs() {
+  return (
+    <Tab.Navigator screenOptions={defaultScreenOptions}>
+      <Tab.Screen
+        name="Activity"
+        component={Activities}
+        options={{
+          title: 'Activities',
+        }}
+      />
+      <Tab.Screen
+        name="Diet"
+        component={Diet}
+        options={{
+          title: 'Diet',
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: 'Settings',
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -22,10 +53,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={defaultScreenOptions}>
           <Stack.Screen
-            name="Activity"
-            component={Activities}
+            name="DietAndActivitiesTabs"
+            component={Tabs}
             options={{
-              title: 'Activities',
+              headerShown: false,
             }}
           />
           <Stack.Screen
@@ -37,7 +68,7 @@ export default function App() {
           />
           <Stack.Screen
             name="New Diet"
-            component={Diet}
+            component={NewDiet}
             options={{
               title: 'Add a Diet Entry',
             }}
