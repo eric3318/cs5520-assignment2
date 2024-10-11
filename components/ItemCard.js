@@ -1,8 +1,8 @@
-import { View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function ItemCard({ item }) {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Breakfast</Text>
       <View>
         <Text>Tue Sep 17 2024</Text>
@@ -13,3 +13,9 @@ export default function ItemCard({ item }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  },
+});

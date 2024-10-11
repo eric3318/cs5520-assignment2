@@ -5,10 +5,6 @@ import { useEffect } from 'react';
 import PressableButton from '../components/PressableButton';
 
 export default function Activities({ navigation, route }) {
-  const [data, setData] = useData();
-
-  const addActivityHandler = () => {};
-
   const toAddScreen = () => {
     navigation.push('New Activity');
   };
@@ -25,7 +21,7 @@ export default function Activities({ navigation, route }) {
 
   return (
     <View>
-      <ItemList items={data} />
+      <ItemList itemType="activity" />
     </View>
   );
 }

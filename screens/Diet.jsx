@@ -20,7 +20,7 @@ export default function Diet({ navigation, route }) {
 
   return (
     <View>
-      <ItemList />
+      <ItemList itemType="diet" />
     </View>
   );
 }
