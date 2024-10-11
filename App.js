@@ -6,6 +6,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 import Activities from './screens/Activities';
 import { DataProvider } from './context/dataContext';
+import { ThemeProvider } from './context/themeContext';
 import NewActivity from './screens/NewActivity';
 import Diet from './screens/Diet';
 import NewDiet from './screens/NewDiet';
@@ -49,32 +50,34 @@ export default function App() {
     /*    <View style={styles.container}>
       <StatusBar style="auto" />
     </View>*/
-    <DataProvider>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={defaultScreenOptions}>
-          <Stack.Screen
-            name="DietAndActivitiesTabs"
-            component={Tabs}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="New Activity"
-            component={NewActivity}
-            options={{
-              title: 'Add an Activity',
-            }}
-          />
-          <Stack.Screen
-            name="New Diet"
-            component={NewDiet}
-            options={{
-              title: 'Add a Diet Entry',
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </DataProvider>
+    <ThemeProvider>
+      <DataProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={defaultScreenOptions}>
+            <Stack.Screen
+              name="DietAndActivitiesTabs"
+              component={Tabs}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="New Activity"
+              component={NewActivity}
+              options={{
+                title: 'Add an Activity',
+              }}
+            />
+            <Stack.Screen
+              name="New Diet"
+              component={NewDiet}
+              options={{
+                title: 'Add a Diet Entry',
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </DataProvider>
+    </ThemeProvider>
   );
 }
