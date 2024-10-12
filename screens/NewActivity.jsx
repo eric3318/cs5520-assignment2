@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import PressableButton from '../components/PressableButton';
 import { useData } from '../hook/useData';
 
-export default function NewActivity() {
+export default function NewActivity({ navigation }) {
   const [open, setOpen] = useState(false);
   const [activityType, setActivityType] = useState('');
   const items = [
@@ -18,6 +18,7 @@ export default function NewActivity() {
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date());
   const [data, setData] = useData();
+  const [error, setError] = useState({});
 
   const onChange = (event, selectedDate) => {
     setDate(selectedDate);
@@ -36,6 +37,11 @@ export default function NewActivity() {
         activities: [...prev.activities, newActivity],
       };
     });
+    cancelHandler();
+  };
+
+  const cancelHandler = () => {
+    navigation.goBack();
   };
 
   useEffect(() => {
@@ -69,7 +75,7 @@ export default function NewActivity() {
       />
       <DateTimePicker value={date} display="inline" onChange={onChange} />
       <View style={styles.buttonContainer}>
-        <PressableButton>
+        <PressableButton pressedFunction={cancelHandler}>
           <Text>Cancel</Text>
         </PressableButton>
         <PressableButton pressedFunction={saveHandler}>

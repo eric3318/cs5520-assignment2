@@ -1,11 +1,10 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useData } from '../hook/useData';
-import DropDownPicker from 'react-native-dropdown-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import PressableButton from '../components/PressableButton';
 
-export default function NewDiet() {
+export default function NewDiet({ navigation }) {
   const [description, setDescription] = useState('');
   const [calories, setCalories] = useState('');
   const [date, setDate] = useState(new Date());
@@ -28,6 +27,11 @@ export default function NewDiet() {
         diet: [...prev.diet, newDiet],
       };
     });
+    cancelHandler();
+  };
+
+  const cancelHandler = () => {
+    navigation.goBack();
   };
 
   useEffect(() => {
@@ -59,7 +63,7 @@ export default function NewDiet() {
       />
       <DateTimePicker value={date} display="inline" onChange={onChange} />
       <View style={styles.buttonContainer}>
-        <PressableButton>
+        <PressableButton pressedFunction={cancelHandler}>
           <Text>Cancel</Text>
         </PressableButton>
         <PressableButton pressedFunction={saveHandler}>
