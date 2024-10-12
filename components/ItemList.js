@@ -1,6 +1,5 @@
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import ItemCard from './ItemCard';
-import { useState } from 'react';
 import { useData } from '../hook/useData';
 
 export default function ItemList({ itemType }) {
@@ -9,7 +8,14 @@ export default function ItemList({ itemType }) {
   return (
     <FlatList
       data={itemType === 'activity' ? data.activities : data.diet}
-      renderItem={({ item }) => <ItemCard item={item} />}
+      renderItem={({ item }) => <ItemCard item={item} itemType={itemType} />}
+      contentContainerStyle={styles.container}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    rowGap: 16,
+  },
+});

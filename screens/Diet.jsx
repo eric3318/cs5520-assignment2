@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import ItemList from '../components/ItemList';
 import { useEffect } from 'react';
 import PressableButton from '../components/PressableButton';
@@ -19,8 +19,15 @@ export default function Diet({ navigation, route }) {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={styles.container}>
       <ItemList itemType="diet" />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+});
