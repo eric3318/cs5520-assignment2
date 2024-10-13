@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -22,14 +22,29 @@ export default function NewActivity({ navigation }) {
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date());
   const [data, setData] = useData();
-  const [error, setError] = useState({});
 
   const onChange = (event, selectedDate) => {
     setDate(selectedDate);
   };
 
+  const showAlert = (title, message) => {
+    Alert.alert(title, message, [{ text: 'OK' }]);
+  };
+
   const saveHandler = () => {
-    validateInput();
+    if (!activityType || !duration || !date) {
+      showAlert('Error', 'Please fill in all required fields');
+      return;
+    }
+    if (isNaN(parseInt(duration))) {
+      showAlert('Error', 'Duration must be a number');
+      return;
+    }
+    if (parseInt(duration) <= 0) {
+      showAlert('Error', 'Duration must be a positive number');
+      return;
+    }
+
     let newActivity = {
       type: activityType,
       duration: duration,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useData } from '../hook/useData';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -16,8 +16,24 @@ export default function NewDiet({ navigation }) {
     setDate(selectedDate);
   };
 
+  const showAlert = (title, message) => {
+    Alert.alert(title, message, [{ text: 'OK' }]);
+  };
+
   const saveHandler = () => {
-    validateInput();
+    if (!date || !calories || !description) {
+      showAlert('Error', 'Please fill in all required fields');
+      return;
+    }
+    if (isNaN(parseInt(calories))) {
+      showAlert('Error', 'Calories must be a number');
+      return;
+    }
+    if (parseInt(calories) <= 0) {
+      showAlert('Error', 'Calories must be a positive number');
+      return;
+    }
+
     let newDiet = {
       description,
       calories,
@@ -39,8 +55,6 @@ export default function NewDiet({ navigation }) {
   useEffect(() => {
     console.log(data);
   }, [data]);
-
-  const validateInput = () => {};
 
   return (
     <View
