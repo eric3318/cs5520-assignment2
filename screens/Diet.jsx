@@ -2,8 +2,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import ItemList from '../components/ItemList';
 import { useEffect } from 'react';
 import PressableButton from '../components/PressableButton';
+import { useTheme } from '../hook/useTheme';
 
 export default function Diet({ navigation, route }) {
+  const [theme] = useTheme();
   const toAddScreen = () => {
     navigation.push('New Diet');
   };
@@ -19,7 +21,9 @@ export default function Diet({ navigation, route }) {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
       <ItemList itemType="diet" />
     </View>
   );

@@ -1,10 +1,16 @@
 export const theme = {
-  light: {
+  one: {
     backgroundColor: '#caf0f8',
-    color: '#0077b6',
+    color: '#90e0ef',
+    textColor: '#000',
   },
-  dark: {
-    backgroundColor: '#11001c',
-    color: '#3a015c',
+  two: {
+    backgroundColor: '#b8bedd',
+    color: '#f0e6ef',
+    textColor: '#9c89b8',
   },
+};
+
+export const colors = {
+  headerBackgroundColor: '#3a015c',
 };

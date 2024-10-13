@@ -4,24 +4,21 @@ import { useTheme } from '../hook/useTheme';
 import { useEffect } from 'react';
 
 export default function Settings() {
-  const [theme, setTheme] = useTheme();
-
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-      return;
-    }
-    setTheme('light');
-  };
+  const [theme, toggleTheme] = useTheme();
 
   useEffect(() => {
     console.log(theme);
   }, [theme]);
 
   return (
-    <View style={styles.container}>
-      <PressableButton pressedFunction={toggleTheme}>
-        <Text>Toggle Theme</Text>
+    <View
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
+      <PressableButton
+        pressedFunction={toggleTheme}
+        componentStyle={{ backgroundColor: theme.color }}
+      >
+        <Text style={{ color: theme.textColor }}>Toggle Theme</Text>
       </PressableButton>
     </View>
   );

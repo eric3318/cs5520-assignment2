@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import PressableButton from '../components/PressableButton';
 import { useData } from '../hook/useData';
+import { useTheme } from '../hook/useTheme';
+import { colors } from '../helper';
 
 export default function NewActivity({ navigation }) {
   const [open, setOpen] = useState(false);
   const [activityType, setActivityType] = useState('');
+  const [theme] = useTheme();
   const items = [
     { label: 'Walking', value: 'Walking' },
     { label: 'Running', value: 'Running' },
@@ -51,8 +54,10 @@ export default function NewActivity({ navigation }) {
   const validateInput = () => {};
 
   return (
-    <View style={styles.container}>
-      <Text>Activity</Text>
+    <View
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
+      <Text style={{ color: theme.textColor }}>Activity</Text>
       <DropDownPicker
         setValue={setActivityType}
         value={activityType}
@@ -60,26 +65,47 @@ export default function NewActivity({ navigation }) {
         open={open}
         setOpen={setOpen}
         placeholder="Select an Activity"
+        style={{ backgroundColor: theme.color }}
+        textStyle={{ color: theme.textColor }}
+        dropDownContainerStyle={{ backgroundColor: theme.color }}
       />
-      <Text>Duration (min)</Text>
+      <Text style={{ color: theme.textColor }}>Duration (min)</Text>
       <TextInput
         value={duration}
         onChangeText={setDuration}
-        style={styles.textInput}
+        style={[
+          styles.textInput,
+          {
+            backgroundColor: theme.color,
+            color: theme.textColor,
+          },
+        ]}
       />
-      <Text>Date</Text>
+      <Text style={{ color: theme.textColor }}>Date</Text>
       <TextInput
         editable={false}
-        style={styles.textInput}
+        style={[
+          styles.textInput,
+          {
+            backgroundColor: theme.color,
+            color: theme.textColor,
+          },
+        ]}
         value={date.toDateString()}
       />
       <DateTimePicker value={date} display="inline" onChange={onChange} />
       <View style={styles.buttonContainer}>
-        <PressableButton pressedFunction={cancelHandler}>
-          <Text>Cancel</Text>
+        <PressableButton
+          pressedFunction={cancelHandler}
+          componentStyle={{ backgroundColor: theme.color }}
+        >
+          <Text style={{ color: theme.textColor }}>Cancel</Text>
         </PressableButton>
-        <PressableButton pressedFunction={saveHandler}>
-          <Text>Ok</Text>
+        <PressableButton
+          pressedFunction={saveHandler}
+          componentStyle={{ backgroundColor: theme.color }}
+        >
+          <Text style={{ color: theme.textColor }}>Ok</Text>
         </PressableButton>
       </View>
     </View>
@@ -97,7 +123,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  button: {},
   textInput: {
     borderWidth: 1,
     paddingVertical: 14,

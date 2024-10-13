@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet } from 'react-native';
 import ItemCard from './ItemCard';
 import { useData } from '../hook/useData';
+import { useTheme } from '../hook/useTheme';
 
 export default function ItemList({ itemType }) {
   const [data] = useData();

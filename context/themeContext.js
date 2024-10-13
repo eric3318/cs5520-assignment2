@@ -4,14 +4,14 @@ import { theme } from '../helper';
 export const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useState(theme.light);
+  const [currentTheme, setCurrentTheme] = useState(theme.one);
 
   const toggleTheme = () => {
-    if (currentTheme === theme.light) {
-      setCurrentTheme(theme.dark);
+    if (currentTheme === theme.one) {
+      setCurrentTheme(theme.two);
       return;
     }
-    setCurrentTheme(theme.light);
+    setCurrentTheme(theme.one);
   };
 
   return (

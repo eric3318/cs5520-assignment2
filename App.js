@@ -14,9 +14,10 @@ import Settings from './screens/Settings';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Feather from '@expo/vector-icons/Feather';
+import { colors } from './helper';
 
 const defaultScreenOptions = {
-  headerStyle: { backgroundColor: 'purple' },
+  headerStyle: { backgroundColor: colors.headerBackgroundColor },
   headerTintColor: 'white',
 };
 
