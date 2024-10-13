@@ -1,10 +1,10 @@
 import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useEffect, useState } from 'react';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import PressableButton from '../components/PressableButton';
 import { useData } from '../hook/useData';
 import { useTheme } from '../hook/useTheme';
+import DatePicker from '../components/DatePicker';
 
 export default function NewActivity({ navigation }) {
   const [open, setOpen] = useState(false);
@@ -22,10 +22,6 @@ export default function NewActivity({ navigation }) {
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date());
   const [data, setData] = useData();
-
-  const onChange = (event, selectedDate) => {
-    setDate(selectedDate);
-  };
 
   const showAlert = (title, message) => {
     Alert.alert(title, message, [{ text: 'OK' }]);
@@ -67,8 +63,6 @@ export default function NewActivity({ navigation }) {
     console.log(data);
   }, [data]);
 
-  const validateInput = () => {};
-
   return (
     <View
       style={[styles.container, { backgroundColor: theme.backgroundColor }]}
@@ -98,18 +92,7 @@ export default function NewActivity({ navigation }) {
         ]}
       />
       <Text style={{ color: theme.textColor }}>Date</Text>
-      <TextInput
-        editable={false}
-        style={[
-          styles.textInput,
-          {
-            backgroundColor: theme.color,
-            color: theme.textColor,
-          },
-        ]}
-        value={date.toDateString()}
-      />
-      <DateTimePicker value={date} display="inline" onChange={onChange} />
+      <DatePicker date={date} onDateChange={setDate} />
       <View style={styles.buttonContainer}>
         <PressableButton
           pressedFunction={cancelHandler}

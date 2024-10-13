@@ -1,20 +1,16 @@
 import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useData } from '../hook/useData';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import PressableButton from '../components/PressableButton';
 import { useTheme } from '../hook/useTheme';
+import DatePicker from '../components/DatePicker';
 
 export default function NewDiet({ navigation }) {
   const [description, setDescription] = useState('');
   const [calories, setCalories] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(null);
   const [data, setData] = useData();
   const [theme] = useTheme();
-
-  const onChange = (event, selectedDate) => {
-    setDate(selectedDate);
-  };
 
   const showAlert = (title, message) => {
     Alert.alert(title, message, [{ text: 'OK' }]);
@@ -86,18 +82,7 @@ export default function NewDiet({ navigation }) {
         ]}
       />
       <Text style={{ color: theme.textColor }}>Date</Text>
-      <TextInput
-        editable={false}
-        style={[
-          styles.textInput,
-          {
-            backgroundColor: theme.color,
-            color: theme.textColor,
-          },
-        ]}
-        value={date.toDateString()}
-      />
-      <DateTimePicker value={date} display="inline" onChange={onChange} />
+      <DatePicker date={date} onDateChange={setDate} />
       <View style={styles.buttonContainer}>
         <PressableButton
           pressedFunction={cancelHandler}
