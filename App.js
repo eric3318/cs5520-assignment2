@@ -67,7 +67,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator screenOptions={defaultScreenOptions}>
             <Stack.Screen
-              name="DietAndActivitiesTabs"
+              name="Back"
               component={Tabs}
               options={{
                 headerShown: false,
