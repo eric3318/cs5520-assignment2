@@ -5,7 +5,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import PressableButton from '../components/PressableButton';
 import { useData } from '../hook/useData';
 import { useTheme } from '../hook/useTheme';
-import { colors } from '../helper';
 
 export default function NewActivity({ navigation }) {
   const [open, setOpen] = useState(false);
@@ -17,6 +16,8 @@ export default function NewActivity({ navigation }) {
     { label: 'Swimming', value: 'Swimming' },
     { label: 'Weights', value: 'Weights' },
     { label: 'Yoga', value: 'Yoga' },
+    { label: 'Cycling', value: 'Cycling' },
+    { label: 'Hiking', value: 'Hiking' },
   ];
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState(new Date());

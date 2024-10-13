@@ -1,9 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
 import Activities from './screens/Activities';
 import { DataProvider } from './context/dataContext';
 import { ThemeProvider } from './context/themeContext';
@@ -15,6 +12,9 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Feather from '@expo/vector-icons/Feather';
 import { colors } from './helper';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const defaultScreenOptions = {
   headerStyle: { backgroundColor: colors.headerBackgroundColor },
@@ -62,9 +62,6 @@ function Tabs() {
 
 export default function App() {
   return (
-    /*    <View style={styles.container}>
-      <StatusBar style="auto" />
-    </View>*/
     <ThemeProvider>
       <DataProvider>
         <NavigationContainer>

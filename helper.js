@@ -5,8 +5,8 @@ export const theme = {
     textColor: '#000',
   },
   two: {
-    backgroundColor: '#b8bedd',
-    color: '#f0e6ef',
+    backgroundColor: '#f0e6ef',
+    color: '#b8bedd',
     textColor: '#9c89b8',
   },
 };

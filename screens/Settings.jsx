@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import PressableButton from '../components/PressableButton';
 import { useTheme } from '../hook/useTheme';
 import { useEffect } from 'react';
